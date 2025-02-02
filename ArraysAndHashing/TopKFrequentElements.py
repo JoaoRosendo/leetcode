@@ -15,3 +15,20 @@ class Solution:
                 solution.append(num)
                 if len(solution) == k:
                     return solution
+
+class SlowerSolution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        nums_and_freq = defaultdict(int)
+        for num in nums:
+            nums_and_freq[num] += 1
+        
+        list_w_items = []
+        for num, frequency in nums_and_freq.items():
+            list_w_items.append([frequency, num])
+        list_w_items.sort()
+
+        solution = []
+
+        while len(solution) < k:
+            solution.append(list_w_items.pop()[1])
+        return solution
